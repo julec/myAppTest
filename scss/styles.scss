@@ -34,6 +34,34 @@ p {
   background: #ffdddd;
 }
 
+.upload-label {
+  display: block;
+  box-sizing: border-box;
+  max-width: 200px;
+  padding: 10px;
+  margin: 20px auto 10px;
+  text-transform: uppercase;
+  color: #2fb675;
+  border-radius: 4px;
+  border: 1px solid;
+  background: #eaf7f1;
+  transition: all ease-in-out 0.2s;
+
+  &:hover,
+  &:focus {
+    color: #eaf7f1;
+    background: #2fb675;
+  }
+
+  &:active {
+    background: #2aa369;
+  }
+}
+
+.upload-input {
+  display: none;
+}
+
 // result view
 .result {
   @media (min-width: $mobile-breakpoint) {

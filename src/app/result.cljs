@@ -8,23 +8,21 @@
 (enable-console-print!)
 
 (rum/defcc result-input
-  [comp value class placeholder validate-on-change on-change & [validate-on-blur on-blur]]
+  [comp value class placeholder validate-on-change on-change & [on-blur]]
   [:input {:class class
            :type "text"
            :placeholder placeholder
            :value value
            :on-blur #(let [new-value (.. % -target -value)]
-                        (when (and validate-on-blur on-blur)
-                          (when (validate-on-blur new-value)
-                            (on-blur)
-                          )))
+                        (when on-blur
+                          (on-blur new-value)))
            :on-change #(let [new-value (.. % -target -value)]
                           (if (validate-on-change new-value)
                             (on-change new-value)
                             (rum/request-render comp)))}])
 
 (rum/defc result [data]
-  (let [numbers (map #(js/parseInt (% 1) 10) (subvec data 1))
+  (let [numbers (map #(js/Number (% 1)) (subvec data 1))
         aggregations #js []
         sum (reduce + numbers)
         avg (/ (js/Math.round (* (/ sum (count numbers)) 100)) 100)
@@ -64,7 +62,8 @@
                     "result-table-cell result-table-caption"
                     "Enter title"
                     #(validation/valid-length? %)
-                    #(swap! common/state assoc-in [:file-content 0 i] %))
+                    #(swap! common/state assoc-in [:file-content 0 i] %)
+                    #(swap! common/state assoc-in [:file-content 0 i] (.trim %)))
                   (str "title-" i)))
               (data 0))
           ]
@@ -85,7 +84,8 @@
                           "result-table-cell"
                           "Enter company name"
                           #(validation/valid-length? %)
-                          #(swap! common/state assoc-in [:file-content (inc i) k] %))
+                          #(swap! common/state assoc-in [:file-content (inc i) k] %)
+                          #(swap! common/state assoc-in [:file-content (inc i) k] (.trim %)))
                         (str "data-" i "-" k))
 
                       ;; number field
@@ -96,8 +96,11 @@
                           "0"
                           #(validation/valid-number? %)
                           #(swap! common/state assoc-in [:file-content (inc i) k] %)
-                          #(or (= % "") (= % "-"))
-                          #(swap! common/state assoc-in [:file-content (inc i) k] 0))
+                          (fn [arg]
+                            (if (re-matches #"(\-|.|)" arg)
+                              (swap! common/state assoc-in [:file-content (inc i) k] 0)
+                              (swap! common/state assoc-in [:file-content (inc i) k] (js/Number arg))
+                            )))
                         (str "data-" i "-" k))))
                   arg)
               ])

@@ -23,9 +23,6 @@
 (defn handle-change [e]
   (put! upload-reqs e))
 
-; (defn content-to-state [content]
-;   (common/add-data! (vec (map common/parse-data! content))))
-
 (go-loop []
   (let [reader (js/FileReader.)
         file (<! upload-reqs)]
@@ -52,19 +49,25 @@
     (not (validation/valid-cols? content))
       (common/write-error-to-state "Wrong number of columns!" true)
 
-    (not (validation/valid-titles? content))
-      (common/write-error-to-state "Titles should be no longer than 20 symbols!" true)
-
-    (not (validation/valid-first-col? content))
-      (common/write-error-to-state "Data in first column should be a no longer than 20 symbols!" true)
-
-    (not (validation/valid-second-col? content))
-      (common/write-error-to-state "Data in second column should be a number!" true)
-
     :else
       (do
-        (swap! common/state assoc :file-content content
-                                  :file-error "")))
+        (let [trimed-content (mapv #(mapv (fn [arg] (.trim arg)) %) content)]
+          (cond
+            (not (validation/valid-titles? trimed-content))
+              (common/write-error-to-state "Titles should be no longer than 20 symbols!" true)
+
+            (not (validation/valid-first-col? trimed-content))
+              (common/write-error-to-state "Data in first column should be a no longer than 20 symbols!" true)
+
+            (not (validation/valid-second-col? trimed-content))
+              (common/write-error-to-state "Data in second column should be a number!" true)
+
+            :else
+              (swap!
+                common/state
+                assoc
+                :file-content trimed-content
+                :file-error "")))))
   (recur)))
 
 (rum/defc input-upload [error-msg]
@@ -73,6 +76,11 @@
       [:p {:class "upload-title"} "Upload a .csv-file that is no more than 10Kb."]
       [:p {:class "upload-error"} error-msg]
     )
-    [:input {:type "file"
-            :class "upload-input"
-            :on-change handle-change}]])
+    [:label {:for "upload-input"
+             :class "upload-label"}
+      "Upload"
+      [:input {:type "file"
+               :id "upload-input"
+               :class "upload-input"
+               :on-change handle-change}]]
+    ])

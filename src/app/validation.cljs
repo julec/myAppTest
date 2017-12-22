@@ -18,7 +18,7 @@
   (= (count arg) 2))
 
 (defn valid-number? [arg]
-  (boolean (re-find #"^-?\d*(\.\d+)?$" arg)))
+  (boolean (re-matches #"(\-|\+)?(\d+)?(\.)?(\d+)?" arg)))
 
 (defn valid-length? [arg]
   (<= (.-length arg) 20))

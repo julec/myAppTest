@@ -3,6 +3,7 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/core.async "0.3.465"]
                  [org.clojure/clojurescript "1.9.521"]
+                 [org.slf4j/slf4j-nop "1.7.13" :scope "test"]
                  [rum "0.10.8"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]
@@ -11,6 +12,7 @@
 
   :sass {:source-paths ["scss"]
          :target-path  "resources/public/css"
+         :output-style :compressed
          :figwheel true
          :source-map   true}
 
