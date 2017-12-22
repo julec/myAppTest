@@ -9,7 +9,7 @@
     false))
 
 (defn valid-file-size? [file]
-  (if (< (.-size file) 1024)
+  (if (< (.-size file) (* 5 1024))
     file
     false))
 
