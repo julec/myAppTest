@@ -15,4 +15,4 @@ return sablono.interpreter.interpret.call(null,app.result.result.call(null,rum.c
 }),new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [rum.core.reactive], null),"app");
 rum.core.mount.call(null,app.core.app.call(null,app.common.state),document.getElementById("app"));
 
-//# sourceMappingURL=core.js.map?rel=1513965929307
+//# sourceMappingURL=core.js.map?rel=1513968672617

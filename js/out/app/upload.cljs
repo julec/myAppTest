@@ -73,7 +73,7 @@
 (rum/defc input-upload [error-msg]
   [:div {:class "container upload"}
     (if (= error-msg "")
-      [:p {:class "upload-title"} "Upload a .csv-file that is no more than 10Kb."]
+      [:p {:class "upload-title"} "Upload a .csv-file that is no more than 5Kb."]
       [:p {:class "upload-error"} error-msg]
     )
     [:label {:for "upload-input"

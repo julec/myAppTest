@@ -10,7 +10,7 @@ return false;
 }
 });
 app.validation.valid_file_size_QMARK_ = (function app$validation$valid_file_size_QMARK_(file){
-if((file.size < (1024))){
+if((file.size < ((5) * (1024)))){
 return file;
 } else {
 return false;
@@ -29,19 +29,19 @@ app.validation.valid_cols_QMARK_ = (function app$validation$valid_cols_QMARK_(co
 return cljs.core.every_QMARK_.call(null,cljs.core.true_QMARK_,cljs.core.map.call(null,app.validation.valid_cols_number_QMARK_,content));
 });
 app.validation.valid_titles_QMARK_ = (function app$validation$valid_titles_QMARK_(content){
-return cljs.core.every_QMARK_.call(null,cljs.core.true_QMARK_,cljs.core.map.call(null,(function (p1__42126_SHARP_){
-return app.validation.valid_length_QMARK_.call(null,p1__42126_SHARP_);
+return cljs.core.every_QMARK_.call(null,cljs.core.true_QMARK_,cljs.core.map.call(null,(function (p1__42377_SHARP_){
+return app.validation.valid_length_QMARK_.call(null,p1__42377_SHARP_);
 }),content.call(null,(0))));
 });
 app.validation.valid_first_col_QMARK_ = (function app$validation$valid_first_col_QMARK_(content){
-return cljs.core.every_QMARK_.call(null,cljs.core.true_QMARK_,cljs.core.map.call(null,(function (p1__42127_SHARP_){
-return app.validation.valid_length_QMARK_.call(null,p1__42127_SHARP_.call(null,(0)));
+return cljs.core.every_QMARK_.call(null,cljs.core.true_QMARK_,cljs.core.map.call(null,(function (p1__42378_SHARP_){
+return app.validation.valid_length_QMARK_.call(null,p1__42378_SHARP_.call(null,(0)));
 }),cljs.core.subvec.call(null,content,(1))));
 });
 app.validation.valid_second_col_QMARK_ = (function app$validation$valid_second_col_QMARK_(content){
-return cljs.core.every_QMARK_.call(null,cljs.core.true_QMARK_,cljs.core.map.call(null,(function (p1__42128_SHARP_){
-return app.validation.valid_number_QMARK_.call(null,p1__42128_SHARP_.call(null,(1)));
+return cljs.core.every_QMARK_.call(null,cljs.core.true_QMARK_,cljs.core.map.call(null,(function (p1__42379_SHARP_){
+return app.validation.valid_number_QMARK_.call(null,p1__42379_SHARP_.call(null,(1)));
 }),cljs.core.subvec.call(null,content,(1))));
 });
 
-//# sourceMappingURL=validation.js.map?rel=1513965928983
+//# sourceMappingURL=validation.js.map?rel=1513968649229

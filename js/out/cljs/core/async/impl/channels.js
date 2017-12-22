@@ -684,4 +684,4 @@ return G__30651;
 cljs.core.async.impl.channels.chan.cljs$lang$maxFixedArity = 3;
 
 
-//# sourceMappingURL=channels.js.map?rel=1513965912841
+//# sourceMappingURL=channels.js.map?rel=1513968557452

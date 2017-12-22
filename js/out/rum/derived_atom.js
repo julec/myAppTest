@@ -164,4 +164,4 @@ return sink;
 rum.derived_atom.derived_atom.cljs$lang$maxFixedArity = 4;
 
 
-//# sourceMappingURL=derived_atom.js.map?rel=1513965927223
+//# sourceMappingURL=derived_atom.js.map?rel=1513968571861
