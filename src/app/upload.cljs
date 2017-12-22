@@ -31,7 +31,7 @@
         (common/write-error-to-state "Upload a .csv-file!" false)
 
       (not (validation/valid-file-size? file))
-        (common/write-error-to-state "File should be no more than 10Kb!" false)
+        (common/write-error-to-state "File should be no more than 5Kb!" false)
       :else
       (do
         (swap! common/state assoc :file-name (.-name file)
