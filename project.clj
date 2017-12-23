@@ -2,7 +2,7 @@
   :description "My App"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/core.async "0.3.465"]
-                 [org.clojure/clojurescript "1.9.521"]
+                 [org.clojure/clojurescript "1.9.946"]
                  [org.slf4j/slf4j-nop "1.7.13" :scope "test"]
                  [rum "0.10.8"]]
 
@@ -35,5 +35,4 @@
                         :release {:source-paths ["src"]
                                   :compiler {:main "app.core"
                                              :output-to "resources/public/js/bundle.js"
-                                             :optimizations :advanced
-                                             :parallel-build true}}}})
+                                             :optimizations :advanced}}}})
